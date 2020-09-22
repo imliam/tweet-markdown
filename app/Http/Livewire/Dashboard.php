@@ -140,7 +140,9 @@ class Dashboard extends Component
 
     protected function makeBlockquote(string $string): string
     {
-        return join("\n", array_map(fn ($line) => "> {$line}", explode("\n", $string)));
+        return join("\n", array_map(function ($line) use ($string) {
+            return "> {$line}";
+        }, explode("\n", $string)));
     }
 
     protected function getTweetIdFromUrl($tweetUrl): ?string

@@ -1,4 +1,4 @@
-<div class="flex flex-col justify-between container items-center justify-center h-screen mx-auto px-8 py-8 gap-8 space-y-8">
+<div class="flex flex-col justify-between container items-center justify-center min-h-screen mx-auto px-8 py-8 gap-8 space-y-8">
     <div class="max-w-screen-xl mx-auto overflow-hidden space-y-4">
         <h2 class="text-4xl leading-9 font-handwritten font-extrabold text-twitter-500 tracking-tight sm:text-5xl text-center mt-8 md:mt-16">
             Tweet Markdown

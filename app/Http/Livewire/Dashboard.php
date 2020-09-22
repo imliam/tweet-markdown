@@ -34,6 +34,11 @@ class Dashboard extends Component
 
         $tweetId = $this->getTweetIdFromUrl($this->tweetUrl);
         $tweetDetails = $this->getTweetDetails($tweetId);
+
+        if (empty($tweetDetails['data'])) {
+            throw ValidationException::withMessages(['tweetUrl' => 'We could not find this Tweet.']);
+        }
+
         $tweet = $tweetDetails['data'];
         $media = $tweetDetails['includes']['media'] ?? [];
         $author = $this->getTweetAuthorDetails($tweet['author_id']);

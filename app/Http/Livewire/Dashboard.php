@@ -12,8 +12,8 @@ use Illuminate\Validation\ValidationException;
 
 class Dashboard extends Component
 {
-    public string $tweetUrl = '';
-    public string $markdown = '';
+    public $tweetUrl = '';
+    public $markdown = '';
 
     public function updatedTweetUrl()
     {
@@ -61,7 +61,9 @@ class Dashboard extends Component
 
     protected function getMarkdownWithInlineLinks($text, $tweet)
     {
-        $urls = collect($tweet['entities']['urls'] ?? [])->unique(fn($url) => $url['url']);
+        $urls = collect($tweet['entities']['urls'] ?? [])->unique(function($url) {
+            return $url['url'];
+        });
 
         foreach ($urls as $url) {
             $text = str_replace($url['url'], '<' . $url['url'] . '>', $text);
@@ -72,7 +74,9 @@ class Dashboard extends Component
 
     protected function getMarkdownWithHashtagLinks($text, $tweet)
     {
-        $hashtags = collect($tweet['entities']['hashtags'] ?? [])->unique(fn($hashtag) => $hashtag['tag']);
+        $hashtags = collect($tweet['entities']['hashtags'] ?? [])->unique(function($hashtag) {
+            return $hashtag['tag'];
+        });
 
         foreach ($hashtags as $hashtag) {
             $tag = $hashtag['tag'];
